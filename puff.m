@@ -1,0 +1,15 @@
+Q = 7.3e-2 * 1e11;
+lx = 700;
+ly = 700;
+u = 5;
+t = 3999 * 0.044;
+[x,y] = meshgrid(-3490:10:3500,-3490:10:3500);
+by0 = 300%0.08*abs(x).*(1+0.0001*abs(x)).^(-0.5);
+bz0 = 300%0.06*abs(x).*(1+0.0015*abs(x)).^(-0.5);
+tmp1 = (4*pi)^(3.0/2).*by0.*by0.*by0;
+tmp2 = (-(x).*(x)./(by0.*by0) - (y-u*t).*(y-u*t)./(by0.*by0))/4;
+c = Q./tmp1.*exp(tmp2);
+figure;
+imagesc(c);
+%colorbar;
+title puff;
